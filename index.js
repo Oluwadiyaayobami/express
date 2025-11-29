@@ -45,12 +45,34 @@ server.get('/login/:id',(req,res)=>{
 
     const singleuser = user.find(user => user.id === userid)
     if(singleuser){
-        res.json(singleuser)
+        res.json(singleuser)// so we have to return a json oject so the browser can iteractwith it easily 
     }
     else{
         res.status(404).send('user data not found ')
     }
 
+})
+
+
+server.get('/information/:id',(req,res) => {
+    const cerateid = parseInt(req.params.id)
+
+    const informations = [
+            { id: 1, title: 'The Alchemist', author: 'Paulo Coelho' },
+            { id: 2, title: '1984', author: 'George Orwell' },
+            { id: 3, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
+            { id: 4, title: 'To Kill a Mockingbird', author: 'Harper Lee' },
+            { id: 5, title: 'The Catcher in the Rye', author: 'J.D. Salinger' }
+];
+    const getsinglebook = informations.find(informations => informations.id === cerateid)
+    if(getsinglebook){
+        res.json(getsinglebook)
+
+    }
+    else{
+        res.status(404).send('book not found ')
+    }
+    
 })
 
 const port = 3000 
